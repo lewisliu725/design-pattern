@@ -1,0 +1,27 @@
+@startuml
+
+' Class Definition
+Client : {static} + main()
+
+Invoker : - HashMap<String, Command> commandMap
+Invoker : + register(String commandName, Command command)
+Invoker : + execute()
+
+interface Command
+Command : + execute()
+ConcreteCommandA : + execute()
+ConcreteCommandA : - ReceiverA receiver
+ConcreteCommandB : + execute()
+ConcreteCommandB : - ReceiverB receiver
+
+' Class Relationship
+Client ..> Invoker
+Invoker "1" o-- "n" Command
+
+Command <|.. ConcreteCommandA
+Command <|.. ConcreteCommandB
+
+ConcreteCommandA o-- ReceiverA
+ConcreteCommandB o-- ReceiverB
+
+@enduml

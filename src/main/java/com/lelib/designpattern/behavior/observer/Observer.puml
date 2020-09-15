@@ -1,0 +1,28 @@
+@startuml
+
+abstract Subject {
+    - observers: List<Observer>
+    + registerObserver(observer)
+    + unregisterObserver(observer)
+    + notifyObservers()
+}
+class ConcreteSubject extends Subject {
+    - state
+    + getState()
+    + setState(state)
+}
+
+interface Observer {
+    + update(): void
+}
+class ConcreteObserverA implements Observer {
+    - observerState
+    + update(): void
+}
+class ConcreteObserverB implements Observer {
+}
+
+Subject o-- Observer
+'ConcreteObserverA --> ConcreteSubject
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+
+interface Strategy {
+    + doOperation()
+}
+
+class ConcreteStrategyA implements Strategy
+class ConcreteStrategyB implements Strategy
+
+class Context {
+    - strategy: Strategy
+    + setStratagy(strategy)
+    + executeStrategy()
+}
+note bottom: this.strategy.doOperation();
+
+Context *-- Strategy
+
+@enduml

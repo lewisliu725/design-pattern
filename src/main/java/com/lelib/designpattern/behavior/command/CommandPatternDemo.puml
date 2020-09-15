@@ -1,0 +1,32 @@
+@startuml
+
+' Class Definition
+Client : main()
+
+Switch : - HashMap<String, Command> commandMap
+Switch : + register(String commandName, Command command)
+Switch : + execute()
+note right: Invoker
+
+interface Command
+Command : + execute()
+SwitchOnCommand : + execute()
+SwitchOnCommand : - Light light
+SwitchOffCommand : + execute()
+SwitchOffCommand : - Light light
+
+Light : + turnOn()
+Light : + turnOff()
+note right: Receiver
+
+' Class Relationship
+Client ..> Switch : Uses Invoker
+Switch "1" o-- "n" Command
+
+Command <|.. SwitchOnCommand
+Command <|.. SwitchOffCommand
+
+SwitchOnCommand o-- Light : Uses Receiver
+SwitchOffCommand o-- Light : Uses Receiver
+
+@enduml

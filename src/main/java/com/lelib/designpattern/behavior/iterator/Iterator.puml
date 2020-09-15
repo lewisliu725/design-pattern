@@ -1,0 +1,29 @@
+@startuml
+
+interface Iterator {
+    + hasNext(): boolean
+    + next(): T
+}
+interface Iterable {
+    + iterator(): Iterator<T>
+}
+interface Collection {
+    + add(T e): boolean
+    + remove(Object obj): boolean
+    + stream(): Stream
+}
+interface List {
+}
+interface Set {
+}
+
+Iterable --> Iterator
+Iterable <|-- Collection
+Collection <|-- List
+Collection <|-- Set
+
+List <|.. ArrayList
+Set <|.. HashSet
+
+
+@enduml

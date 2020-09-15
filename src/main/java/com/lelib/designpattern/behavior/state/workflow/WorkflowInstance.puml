@@ -1,0 +1,29 @@
+@startuml
+
+interface WorkflowState {
+    + submit(instance): void
+    + approve(instance): void
+    + pushback(instance): void
+    + cancel(instance): void
+}
+abstract AbstractWorkflowState implements WorkflowState {
+}
+class DraftState extends AbstractWorkflowState
+class MemberFirmState extends AbstractWorkflowState
+class GlobalState extends AbstractWorkflowState
+class CompletedState extends AbstractWorkflowState
+class CancelledState extends AbstractWorkflowState
+
+class WorklfowInstance {
+    - WorkflowState state;
+    + setState(state): void
+    + submit(): void
+    + approve(): void
+    + pushback(): void
+    + cancel(): void
+}
+
+WorklfowInstance o-- WorkflowState
+WorklfowInstance <-- WorkflowState
+
+@enduml

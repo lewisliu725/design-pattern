@@ -1,0 +1,31 @@
+@startuml
+
+' Class Definition
+Client : {static} + main()
+
+abstract Handler
+Handler : - Handler successor
+Handler : + setSuccessor(Handler successor)
+Handler : + handleRequest(Request request)
+
+ConcreteHandlerA : + handleRequest(Request request)
+ConcreteHandlerB : + handleRequest(Request request)
+
+' Class Relationship
+Client ..> Handler
+
+Handler o-- Handler
+Handler <|-- ConcreteHandlerA
+Handler <|-- ConcreteHandlerB
+
+' Sample
+TheClient : {static} + main()
+TheConcreteHandlerA : + handleRequest(Request request)
+TheConcreteHandlerB : + handleRequest(Request request)
+TheConcreteHandlerX : + handleRequest(Request request)
+
+TheClient ..> TheConcreteHandlerA
+TheConcreteHandlerA --> TheConcreteHandlerB
+TheConcreteHandlerB --> TheConcreteHandlerX
+
+@enduml

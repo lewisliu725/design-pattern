@@ -1,0 +1,28 @@
+@startuml
+
+' Class Definitions
+interface Expression {
+    + interpret(): boolean
+}
+class TerminalExpression {
+    - data : String
+    + interpret() : boolean
+}
+class AndExpression {
+    - leftExp : Expression
+    - rightExp : Expression
+    + interpret() : boolean
+}
+class OrExpression {
+    - leftExp : Expression
+    - rightExp : Expression
+    + interpret() : boolean
+}
+
+' Class Relationships
+
+Expression <|.. TerminalExpression
+Expression <|.. AndExpression
+Expression <|.. OrExpression
+
+@enduml
